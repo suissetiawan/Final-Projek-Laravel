@@ -36,7 +36,10 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        unset($data['_token']);
+        
+       
     }
 
     /**
