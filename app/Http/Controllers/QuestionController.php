@@ -14,7 +14,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('question.index');
+        $question = Question::all();
+        return view('question.index',compact('question'));
     }
 
     /**
@@ -47,6 +48,9 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         //
+        Question::find($question);
+        //dd($ask);
+        return view('question.detail', compact('question'));
     }
 
     /**

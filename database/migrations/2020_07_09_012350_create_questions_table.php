@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPointToUsersTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddPointToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->integer('poin_reputasi');
+        Schema::create('questions', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('judul')->nullable();
+            $table->text('isi_pertanyaan')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AddPointToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('questions');
     }
 }
