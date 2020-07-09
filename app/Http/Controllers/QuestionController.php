@@ -34,13 +34,15 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $data = $request->all();
-        unset($data['_token']);
-        
-       
-    }
+    { 
+        $new_question = new Question;
+        $new_question->judul = $request['judul'];
+        $new_question->isi_pertanyaan = $request["isi"];
 
+        $new_question->save();
+        
+    }
+        
     /**
      * Display the specified resource.
      *

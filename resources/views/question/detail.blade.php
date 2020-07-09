@@ -8,8 +8,6 @@
 @section('content')
 
 	<div class="card card-widget">
-         
-
         <div class="card-header">
             <div class="user-block">
             <p class="h3">
