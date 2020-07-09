@@ -4,7 +4,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-9">
-			<div class="mb-3">
+			<div class="mb-3 pull-right">
 				<a href="/questions/create" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Buat pertanyaan</a>
 			</div>
 			@for($i = 1; $i <= 5; $i++)
