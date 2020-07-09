@@ -24,6 +24,15 @@
 				        </form>
 				    </div>
 		    	</div>
+		    	<div class="card-footer">
+		    		<div class="float-left">
+		    			<span class="badge badge-success">0 Votes</span>
+		    			<span class="badge bg-indigo">0 Jawaban</span>
+		    		</div>
+		    		<div class="float-right">
+		    			<small>Diposting pada 2020-07-09 10:27 oleh Reva Doni Aprilio</small>
+		    		</div>
+		    	</div>
 		  	</div>
 			@endfor
 			
