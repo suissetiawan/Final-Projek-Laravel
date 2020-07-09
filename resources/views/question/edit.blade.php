@@ -7,31 +7,38 @@
 @section('title', 'Input Pertanyaan')
 
 @section('content')
-	<form action="/questions" method="POST">
+	
+	<form action="/questions/{{$question->id}}" method="POST">
 		@csrf
+		{{method_field('put')}}
+		<input hidden type="text" value="{{$question->id}}" name="id">
+		<input hidden type="text" name="updated_at" value="{{\Carbon\Carbon::now()}}">
 		<div class="card card-primary">
 			<div class="card-header">
 				<h3 class="card-title">Tambahkan Pertanyaan</h3>
 			</div>
-
 	    	<div class="card-body">
 	      		<div class="form-group">
 	        		<label for="judul">Judul <br>
 	        			<small>Ajukan dengan spesifik dan bayangkan anda sedang bertanya kepada orang lain.</small>
 	        		</label>
-	        		<input type="text" class="form-control" name="judul" id="judul">
+	        		<input type="text" class="form-control" name="judul" id="judul" value="{{$question->judul}}">
 	      		</div>
 	      		<div class="form-group">
 	        		<label for="isi">Isi Pertanyaan <br>
 	        			<small>Sertakan semua informasi yang dibuthkan untuk menjawab pertanyaan Anda.</small>
 	        		</label>
 	        		<textarea name="isi_pertanyaan" class="form-control my-editor">
-	        			{!! old('isi', $content ?? '') !!}
+	        			{!! old('isi', $content ?? '') !!}{{$question->isi_pertanyaan}}
 	        		</textarea>
 	      		</div>
 	      		<div class="form-group">
 	        		<label for="judul">Tags <br></label>
-	        		<input type="text" class="form-control" name="tags" placeholder="tag1,tag2,tag3,dst">
+	        		<?php $tagArr = [];
+	        		foreach ($question->tags as $val){$tagArr[] = $val->tags;};
+	        		$tag = implode(",", $tagArr);
+	        		?>
+	        		<input type="text" class="form-control" name="tags" value="{{$tag}}">
 	      		</div>
 	    	</div>
 

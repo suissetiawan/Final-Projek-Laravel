@@ -12,9 +12,7 @@
 
         <div class="card-header">
             <div class="user-block">
-            <p class="h3">
-                {{$question-> judul}}
-            </p>
+            <p class="h3">{{$question-> judul}}</p>
             </div>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" title="Edit">
@@ -38,6 +36,9 @@
                     </div>
                 </div>
             </span>
+            @foreach($question->tags as $val)
+            <button class="btn btn-sm btn-success mr-1 mt-5">{{$val->tags}}</button>
+            @endforeach
         </div>
 
         <div class="card-footer card-comments">

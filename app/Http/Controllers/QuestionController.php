@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use App\Tag;
+use App\QuestionModel;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -36,10 +38,25 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        unset($data['_token']);
-        
-       
+        //$data = $request->all();
+        ///dd($request->tags);
+        $newAsk = Question::create([
+            "judul" => $request->judul,
+            "isi_pertanyaan" => $request->isi_pertanyaan,
+        ]);
+        $tagArr = explode(",", $request->tags);
+        $tagMulti = [];
+        foreach ($tagArr as $strtag) {
+         $tagAssc["tags"] = $strtag;
+         $tagMulti[] = $tagAssc;
+        } 
+
+        foreach ($tagMulti as $tagCek) {
+            $tag = Tag::firstOrCreate($tagCek);
+            $newAsk->tags()->attach($tag->id);
+        }
+
+        return redirect('/questions');
     }
 
     /**
@@ -52,7 +69,6 @@ class QuestionController extends Controller
     {
         //
         Question::find($question);
-        //dd($ask);
         return view('question.detail', compact('question'));
     }
 
@@ -64,7 +80,9 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        
+        Question::find($question);
+        //dd($question->tags);
+        return view('question.edit',compact('question'));
     }
 
     /**
@@ -77,6 +95,22 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         //
+        $data = $request->all();
+        $data2 = Question::create([]);
+        $tagArr = explode(",", $request->tags);
+        $tagMulti = [];
+        foreach ($tagArr as $strtag) {
+         $tagAssc["tags"] = $strtag;
+         $tagMulti[] = $tagAssc;
+        } 
+        foreach ($tagMulti as $tagCek) {
+            $tag = Tag::firstOrCreate($tagCek);
+            $data2->tags()->attach($tag->id);
+        }
+        unset($data['_token'], $data['_method'],$data['tags']);
+        QuestionModel::update($data);
+
+        return redirect('/questions');
     }
 
     /**
@@ -85,9 +119,9 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
-    {
-        //
+    public function destroy($id){
+        QuestionModel::delete($id);
+        return redirect('/questions');
     }
     
 }

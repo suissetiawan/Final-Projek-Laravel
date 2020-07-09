@@ -13,9 +13,9 @@
 		    		<a href="/questions/{{$ask->id}}" class="h4">{{$ask-> isi_pertanyaan}}</a>
 		    		<div class="float-right">
 				        <button type="button" class="btn btn-tool" title="Edit">
-				          	<a href="{{ route('questions.edit', 1) }}"><i class="fas fa-edit"></i></a>
+				          	<a href="/questions/{{$ask->id}}/edit"><i class="fas fa-edit"></i></a>
 				        </button>
-				        <form action="{{ route('questions.destroy', 1) }}" method="post" style="display: inline;">
+				        <form action="/questions/{{$ask->id}}" method="post" style="display: inline;">
 				          	@csrf
 				          	@method('DELETE')
 				        	<button type="submit" class="btn btn-tool text-danger" title="Delete">
@@ -23,6 +23,11 @@
 				          	</button>
 				        </form>
 				    </div>
+		    	</div>
+		    	<div class="card-body">
+		    		@foreach($ask->tags as $val)
+			    	<button class="btn btn-sm btn-success mr-1">{{$val->tags}}</button>
+			   		@endforeach
 		    	</div>
 		    	<div class="card-footer">
 		    		<div class="float-left">
