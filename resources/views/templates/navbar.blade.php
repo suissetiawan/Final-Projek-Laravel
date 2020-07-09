@@ -7,7 +7,7 @@
     </li>
   </ul>
 
-  <ul class="navbar-nav ml-auto">
+  {{-- <ul class="navbar-nav ml-auto">
     <li class="nav-item">
     	<a class="btn btn-danger" href="{{ route('logout') }}"
             onclick="event.preventDefault();
@@ -18,6 +18,6 @@
             @csrf
         </form>
     </li>
-  </ul>
+  </ul> --}}
 
 </nav>

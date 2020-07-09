@@ -28,20 +28,20 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="/questions" class="nav-link {{ (request()->segment(2) == '') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-list"></i>
+              <i class="nav-icon fas fa-globe-asia"></i>
               <p>
                 Beranda
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="/questions/create" class="nav-link {{ (request()->segment(2) == 'create') ? 'active' : '' }}">
               <i class="nav-icon fas fa-plus"></i>
               <p>
                 Buat Pertanyaan
               </p>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
