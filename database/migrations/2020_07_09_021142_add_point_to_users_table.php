@@ -15,7 +15,7 @@ class AddPointToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->integer('poin_reputasi');
+            $table->integer('poin_reputasi')->nullable();
         });
     }
 
