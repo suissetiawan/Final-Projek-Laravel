@@ -34,7 +34,7 @@
 	        		<input type="text" class="form-control" name="tags" placeholder="tag1,tag2,tag3,dst">
 	      		</div>
 	    	</div>
-
+	    	<input hidden type="text" name="user_id" value="{{ Auth::user()->id}}">
 	        <div class="card-footer">
 	        	<a href="/questions" class="btn btn-danger">cancel</a>
 	        	<button type="submit" class="btn btn-primary">Submit</button>
