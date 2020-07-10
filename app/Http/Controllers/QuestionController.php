@@ -98,10 +98,13 @@ class QuestionController extends Controller
     {
         //
         $data = $request->all();
+        unset($data['_token'], $data['_method'],$data['tags']);
+        QuestionModel::update($data);
+        
         $data2 = Question::create([]);
         $tagArr = explode(",", $request->tags);
         $tagMulti = [];
-        foreach ($tagArr as $strtag) {
+        foreach ($tagArr as $strtag){
          $tagAssc["tags"] = $strtag;
          $tagMulti[] = $tagAssc;
         } 
@@ -109,8 +112,6 @@ class QuestionController extends Controller
             $tag = Tag::firstOrCreate($tagCek);
             $data2->tags()->attach($tag->id);
         }
-        unset($data['_token'], $data['_method'],$data['tags']);
-        QuestionModel::update($data);
 
         return redirect('/questions');
     }

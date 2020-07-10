@@ -12,6 +12,7 @@
 		@csrf
 		@method('PUT')
 		<input hidden type="text" value="{{$question->id}}" name="id">
+		<input hidden type="text" value="{{$question->users_id}}" name="users_id">
 		<input hidden type="text" name="updated_at" value="{{\Carbon\Carbon::now()}}">
 		<div class="card card-primary">
 			<div class="card-header">
