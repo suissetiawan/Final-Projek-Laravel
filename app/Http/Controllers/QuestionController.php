@@ -18,7 +18,6 @@ class QuestionController extends Controller
     public function index()
     {
         $question = Question::all();
-        //dd($question);
         return view('question.index',compact('question'));
     }
 
@@ -45,6 +44,7 @@ class QuestionController extends Controller
         $newAsk = Question::create([
             "judul" => $request->judul,
             "isi_pertanyaan" => $request->isi_pertanyaan,
+            "users_id" => $request->user_id,
         ]);
         $tagArr = explode(",", $request->tags);
         $tagMulti = [];
@@ -57,7 +57,6 @@ class QuestionController extends Controller
             $tag = Tag::firstOrCreate($tagCek);
             $newAsk->tags()->attach($tag->id);
         }
-        $newAsk->user()->attach($request->user_id);
 
         return redirect('/questions');
     }

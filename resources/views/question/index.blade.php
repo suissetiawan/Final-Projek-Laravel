@@ -40,7 +40,7 @@
 		    			<span class="badge bg-indigo">0 Jawaban</span>
 		    		</div>
 		    		<div class="float-right">
-		    		<small>Diposting pada {{$ask->updated_at}} oleh .....</small>
+		    		<small>Diposting pada {{$ask->updated_at}} oleh </small>
 		    		</div>
 		    	</div>
 		  	</div>
