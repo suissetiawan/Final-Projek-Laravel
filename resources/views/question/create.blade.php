@@ -4,7 +4,7 @@
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 @endpush
 
-@section('title', 'Input Pertanyaan')
+@section('title', 'Larahub | Buat Pertanyaan')
 
 @section('content')
 	<form action="/questions" method="POST">

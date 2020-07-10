@@ -4,7 +4,7 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 @endpush
 
-@section('title', 'Detail Pertanyaan')
+@section('title', 'Larahub | Detail Pertanyaan')
 @section('content')
 
 	<div class="card card-widget">
@@ -23,7 +23,7 @@
 
         <div class="card-body">
           	<p>
-                {{$question->isi_pertanyaan}}
+                {!! old('isi', $question->isi_pertanyaan) !!}
           	</p>
             <span class="float-right text-muted">
                 <div class="callout callout-info">

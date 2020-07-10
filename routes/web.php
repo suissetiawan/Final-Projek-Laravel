@@ -16,12 +16,15 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/questions/detail', function() {
-	return view('question.detail');
-});
 
 Route::group(['middleware' => 'auth'], function() {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('questions', 'QuestionController');
 	Route::resource('answers', 'AnswerController');
+	Route::get('/detail', function() {
+		return view('question.detail');
+	});
+	Route::get('/profile', function() {
+		return view('profile');
+	});
 });

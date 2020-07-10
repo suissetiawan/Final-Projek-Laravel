@@ -4,13 +4,13 @@
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 @endpush
 
-@section('title', 'Input Pertanyaan')
+@section('title', 'Larahub | Edit Pertanyaan')
 
 @section('content')
 	
-	<form action="/questions/{{$question->id}}" method="POST">
+	<form action="{{ route('questions.update', $question->id) }}" method="POST">
 		@csrf
-		{{method_field('put')}}
+		@method('PUT')
 		<input hidden type="text" value="{{$question->id}}" name="id">
 		<input hidden type="text" name="updated_at" value="{{\Carbon\Carbon::now()}}">
 		<div class="card card-primary">
