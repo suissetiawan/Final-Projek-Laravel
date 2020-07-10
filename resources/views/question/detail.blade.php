@@ -23,7 +23,7 @@
 
         <div class="card-body">
           	<p>
-                {{$question->isi_pertanyaan}}
+                {!! old('isi', $question->isi_pertanyaan) !!}
           	</p>
             <span class="float-right text-muted">
                 <div class="callout callout-info">
