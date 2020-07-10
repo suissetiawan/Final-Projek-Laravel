@@ -7,15 +7,15 @@
 			<div class="mb-3 pull-right">
 				<a href="/questions/create" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Buat pertanyaan</a>
 			</div>
-			@for($i = 1; $i <= 5; $i++)
+			@foreach($question as $key => $ask)
 			<div class="card card-widget card-outline card-primary">
 		    	<div class="card-body">
-		    		<a href="" class="h4">Apa yang dimaksud LTS dalam Laravel 6.x ?</a>
+		    		<a href="/questions/{{$ask->id}}" class="h4">{{$ask-> isi_pertanyaan}}</a>
 		    		<div class="float-right">
 				        <button type="button" class="btn btn-tool" title="Edit">
-				          	<a href="{{ route('questions.edit', 1) }}"><i class="fas fa-edit"></i></a>
+				          	<a href="/questions/{{$ask->id}}/edit"><i class="fas fa-edit"></i></a>
 				        </button>
-				        <form action="{{ route('questions.destroy', 1) }}" method="post" style="display: inline;">
+				        <form action="/questions/{{$ask->id}}" method="post" style="display: inline;">
 				          	@csrf
 				          	@method('DELETE')
 				        	<button type="submit" class="btn btn-tool text-danger" title="Delete">
@@ -24,17 +24,22 @@
 				        </form>
 				    </div>
 		    	</div>
+		    	<div class="card-body">
+		    		@foreach($ask->tags as $val)
+			    	<button class="btn btn-sm btn-success mr-1">{{$val->tags}}</button>
+			   		@endforeach
+		    	</div>
 		    	<div class="card-footer">
 		    		<div class="float-left">
 		    			<span class="badge badge-success">0 Votes</span>
 		    			<span class="badge bg-indigo">0 Jawaban</span>
 		    		</div>
 		    		<div class="float-right">
-		    			<small>Diposting pada 2020-07-09 10:27 oleh Reva Doni Aprilio</small>
+		    			<small>Diposting pada {{$ask->updated_at}} oleh Reva Doni Aprilio</small>
 		    		</div>
 		    	</div>
 		  	</div>
-			@endfor
+			@endforeach
 			
 		</div>
 		<div class="col-md-3">
