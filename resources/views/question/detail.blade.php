@@ -113,6 +113,9 @@
                     </textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Tambah Jawaban</button>
+                <button type="button" class="btn btn-tool" title="Edit">
+                    <a href="/questions/{{$question->id}}/edit"><i class="fas fa-edit"></i></a>
+                </button>
               </form>
             </div>
 

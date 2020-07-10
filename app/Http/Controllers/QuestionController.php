@@ -114,7 +114,7 @@ class QuestionController extends Controller
             $tag = Tag::updateOrCreate($tagCek);
             $question->tags()->attach($tag->id);
         }
-        dd($question);
+        // dd($question);
         unset($data['_token'], $data['_method'],$data['tags']);
         // QuestionModel::update($data);
 
