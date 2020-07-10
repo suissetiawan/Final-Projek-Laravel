@@ -22,11 +22,11 @@
 	        		<input type="text" class="form-control" name="judul" id="judul">
 	      		</div>
 	      		<div class="form-group">
-	        		<label for="isi">Isi Pertanyaan <br>
+	        		<label>Isi Pertanyaan <br>
 	        			<small>Sertakan semua informasi yang dibuthkan untuk menjawab pertanyaan Anda.</small>
 	        		</label>
-	        		<textarea name="isi_pertanyaan" class="form-control my-editor">
-	        			{!! old('isi', $content ?? '') !!}
+	        		<textarea id="isi_pertanyaan" name="isi_pertanyaan" class="form-control my-editor">
+	        			{!! old('isi_pertanyaan',$content ?? '' ) !!}
 	        		</textarea>
 	      		</div>
 	      		<div class="form-group">
@@ -34,7 +34,7 @@
 	        		<input type="text" class="form-control" name="tags" placeholder="tag1,tag2,tag3,dst">
 	      		</div>
 	    	</div>
-
+	    	<input hidden type="text" name="user_id" value="{{ Auth::user()->id}}">
 	        <div class="card-footer">
 	        	<a href="/questions" class="btn btn-danger">cancel</a>
 	        	<button type="submit" class="btn btn-primary">Submit</button>

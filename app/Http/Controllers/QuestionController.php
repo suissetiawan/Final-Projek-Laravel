@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use App\Tag;
+use App\User;
 use App\QuestionModel;
 use Illuminate\Http\Request;
 
@@ -39,10 +40,11 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //$data = $request->all();
-        ///dd($request->tags);
+        //dd($request->all());
         $newAsk = Question::create([
             "judul" => $request->judul,
             "isi_pertanyaan" => $request->isi_pertanyaan,
+            "users_id" => $request->user_id,
         ]);
         $tagArr = explode(",", $request->tags);
         $tagMulti = [];
