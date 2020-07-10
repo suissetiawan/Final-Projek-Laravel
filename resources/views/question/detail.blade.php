@@ -32,7 +32,7 @@
                     </div>
                     <div class="row">
                         <img class="img-circle" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="User Image" width="20">
-                        <p><small>&nbsp;Reva Doni Aprilio</small></p>
+                        <p><small>&nbsp; {{ $question->user }}</small></p>
                     </div>
                 </div>
             </span>
@@ -41,7 +41,7 @@
             @endforeach
         </div>
 
-        <div class="card-footer card-comments">
+        {{-- <div class="card-footer card-comments">
             <div class="card-comment">
             	<img class="img-circle img-sm" src="{{asset('/adminlte/dist/img/user3-128x128.jpg')}}" alt="User Image">
               	<div class="comment-text">
@@ -62,7 +62,7 @@
                     hmm
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="card-footer">
             <form action="/answers" method="post">
@@ -87,41 +87,35 @@
         </div>
 
         <div class="card-body">
+          @foreach($question->answer as $data)
             <div class="post">
               <div class="user-block">
                 <img class="img-circle img-bordered-sm" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="user image">
                 <span class="username">
-                  <a href="#">Alam</a>
+                  <a href="#">{{ $data->id }}</a>
                 </span>
                 <span class="description">Hari ini</span>
               </div>
               <!-- /.user-block -->
               <p>
-                LTS merupakan kepanjangan dari Long Term Support, artinya versi Laravel 5.5 akan sedikit berbeda dengan versi sebelumnya. Perbedaan itu sendiri yaitu, pada Laravel 5.5 akan lebih lama mendapat dukungan yang lebih lama. Versi LTS menerima perbaikan bug selama dua tahun, dan perbaikan keamanan selama tiga tahun. Sedangkan pada versi yang bukan LTS hanya menerima dukungan perbaikan bug selama 6 bulan, dan perbaikan keamanan selama satu tahun.
+                {!! old('isi_jawaban', $data->isi_jawaban ?? '') !!}
               </p>
             </div>
-
-            <div class="post">
-              <div class="user-block">
-                <img class="img-circle img-bordered-sm" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="User Image">
-                <span class="username">
-                  <a href="#">Annisa</a>
-                </span>
-                <span class="description">1 hari yang lalu</span>
-              </div>
-              <!-- /.user-block -->
-              <p>
-                Nah seperti itu 
-              </p>
-            </div>
+          @endforeach
 
             <div class="post">
                 <h4>Jawaban Anda</h4>
-                <div class="form-group">
-                    <textarea name="isi" class="form-control my-editor">
-                        {!! old('isi', $content ?? '') !!}
-                    </textarea>
-                </div>
+                <form action="/answers" method="post">
+                  @csrf
+                  <input type="hidden" name="questions_id" id="questions_id" value="{{ $question->id }}">
+                  <input type="hidden" name="users_id" id="users_id" value="{{ Auth::user()->id }}">
+                  <div class="form-group">
+                      <textarea name="isi_jawaban" id="isi_jawaban" class="form-control my-editor">
+                          {!! old('isi_jawaban', $content ?? '') !!}
+                      </textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Kirim Jawaban</button>
+                </form>
             </div>
 
         </div>

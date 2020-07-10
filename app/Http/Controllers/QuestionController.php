@@ -67,7 +67,6 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
         Question::find($question);
         return view('question.detail', compact('question'));
     }
