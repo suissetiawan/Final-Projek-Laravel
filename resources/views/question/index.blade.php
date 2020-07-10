@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Halaman Utama')
+@section('title', 'Larahub | Halaman Utama')
 
 @section('content')
 	<div class="row">
@@ -9,20 +9,30 @@
 			</div>
 			@foreach($question as $key => $ask)
 			<div class="card card-widget card-outline card-primary">
+		    	<div class="card-body row">
+		    		<div class="col-md-10">
+		    			<a href="/questions/{{$ask->id}}" class="h4">{!! old('isi', $ask->judul) !!}</a>
+		    		</div>
+		    		<div class="col-md-2">
+			    		<div class="float-right">
+					        <button type="button" class="btn btn-tool" title="Edit">
+					          	<a href="/questions/{{$ask->id}}/edit"><i class="fas fa-edit"></i></a>
+					        </button>
+					        <form action="/questions/{{$ask->id}}" method="post" style="display: inline;">
+					          	@csrf
+					          	@method('DELETE')
+					        	<button type="submit" class="btn btn-tool text-danger" title="Delete">
+					        		<i class="fas fa-trash"></i>
+					          	</button>
+					        </form>
+					    </div>
+		    			
+		    		</div>
+		    	</div>
 		    	<div class="card-body">
-		    		<a href="/questions/{{$ask->id}}" class="h4">{{$ask-> isi_pertanyaan}}</a>
-		    		<div class="float-right">
-				        <button type="button" class="btn btn-tool" title="Edit">
-				          	<a href="{{ route('questions.edit', 1) }}"><i class="fas fa-edit"></i></a>
-				        </button>
-				        <form action="{{ route('questions.destroy', 1) }}" method="post" style="display: inline;">
-				          	@csrf
-				          	@method('DELETE')
-				        	<button type="submit" class="btn btn-tool text-danger" title="Delete">
-				        		<i class="fas fa-trash"></i>
-				          	</button>
-				        </form>
-				    </div>
+		    		@foreach($ask->tags as $val)
+			    	<button class="btn btn-sm btn-success mr-1">{{$val->tags}}</button>
+			   		@endforeach
 		    	</div>
 		    	<div class="card-footer">
 		    		<div class="float-left">
@@ -30,7 +40,7 @@
 		    			<span class="badge bg-indigo">0 Jawaban</span>
 		    		</div>
 		    		<div class="float-right">
-		    			<small>Diposting pada {{$ask->updated_at}} oleh Reva Doni Aprilio</small>
+		    		<small>Diposting pada {{$ask->updated_at}} oleh </small>
 		    		</div>
 		    	</div>
 		  	</div>

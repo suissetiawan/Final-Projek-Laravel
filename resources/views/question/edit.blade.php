@@ -4,37 +4,44 @@
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 @endpush
 
-@section('title', 'Larahub | Buat Pertanyaan')
+@section('title', 'Larahub | Edit Pertanyaan')
 
 @section('content')
-	<form action="/questions" method="POST">
+	
+	<form action="{{ route('questions.update', $question->id) }}" method="POST">
 		@csrf
+		@method('PUT')
+		<input hidden type="text" value="{{$question->id}}" name="id">
+		<input hidden type="text" name="updated_at" value="{{\Carbon\Carbon::now()}}">
 		<div class="card card-primary">
 			<div class="card-header">
 				<h3 class="card-title">Tambahkan Pertanyaan</h3>
 			</div>
-
 	    	<div class="card-body">
 	      		<div class="form-group">
 	        		<label for="judul">Judul <br>
 	        			<small>Ajukan dengan spesifik dan bayangkan anda sedang bertanya kepada orang lain.</small>
 	        		</label>
-	        		<input type="text" class="form-control" name="judul" id="judul">
+	        		<input type="text" class="form-control" name="judul" id="judul" value="{{$question->judul}}">
 	      		</div>
 	      		<div class="form-group">
-	        		<label>Isi Pertanyaan <br>
+	        		<label for="isi">Isi Pertanyaan <br>
 	        			<small>Sertakan semua informasi yang dibuthkan untuk menjawab pertanyaan Anda.</small>
 	        		</label>
-	        		<textarea id="isi_pertanyaan" name="isi_pertanyaan" class="form-control my-editor">
-	        			{!! old('isi_pertanyaan',$content ?? '' ) !!}
+	        		<textarea name="isi_pertanyaan" class="form-control my-editor">
+	        			{!! old('isi', $content ?? '') !!}{{$question->isi_pertanyaan}}
 	        		</textarea>
 	      		</div>
 	      		<div class="form-group">
 	        		<label for="judul">Tags <br></label>
-	        		<input type="text" class="form-control" name="tags" placeholder="tag1,tag2,tag3,dst">
+	        		<?php $tagArr = [];
+	        		foreach ($question->tags as $val){$tagArr[] = $val->tags;};
+	        		$tag = implode(",", $tagArr);
+	        		?>
+	        		<input type="text" class="form-control" name="tags" value="{{$tag}}">
 	      		</div>
 	    	</div>
-	    	<input hidden type="text" name="user_id" value="{{ Auth::user()->id}}">
+
 	        <div class="card-footer">
 	        	<a href="/questions" class="btn btn-danger">cancel</a>
 	        	<button type="submit" class="btn btn-primary">Submit</button>

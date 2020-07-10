@@ -4,15 +4,13 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 @endpush
 
-@section('title', 'Detail Pertanyaan')
+@section('title', 'Larahub | Detail Pertanyaan')
 @section('content')
 
 	<div class="card card-widget">
         <div class="card-header">
             <div class="user-block">
-            <p class="h3">
-                {{$question-> judul}}
-            </p>
+            <p class="h3">{{$question->judul}}</p>
             </div>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" title="Edit">
@@ -23,7 +21,7 @@
 
         <div class="card-body">
           	<p>
-                {{$question->isi_pertanyaan}}
+                {!! old('isi', $question->isi_pertanyaan) !!}
           	</p>
             <span class="float-right text-muted">
                 <div class="callout callout-info">
@@ -36,6 +34,9 @@
                     </div>
                 </div>
             </span>
+            @foreach($question->tags as $val)
+            <button class="btn btn-sm btn-success mr-1 mt-5">{{$val->tags}}</button>
+            @endforeach
         </div>
 
         <div class="card-footer card-comments">
