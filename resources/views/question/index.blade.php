@@ -11,7 +11,7 @@
 			<div class="card card-widget card-outline card-primary">
 		    	<div class="card-body row">
 		    		<div class="col-md-10">
-		    			<a href="/questions/{{$ask->id}}" class="h4">{!! old('isi', $ask->isi_pertanyaan) !!}</a>
+		    			<a href="/questions/{{$ask->id}}" class="h4">{!! old('isi', $ask->judul) !!}</a>
 		    		</div>
 		    		<div class="col-md-2">
 			    		<div class="float-right">
