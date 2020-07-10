@@ -63,7 +63,7 @@
         </div> --}}
 
         <div class="card-footer">
-            <form action="/answers" method="post">
+            <form action="/comments" method="post">
             	@csrf
               <input type="hidden" name="pertanyaan_id" id="pertanyaan_id" value="1">
             	<input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
