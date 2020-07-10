@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Halaman Utama')
+@section('title', 'Larahub | Halaman Utama')
 
 @section('content')
 	<div class="row">
