@@ -1,12 +1,13 @@
 
 <nav class="main-header navbar navbar-expand navbar-white navbar-light ">
   <!-- Left navbar links -->
-  <ul class="navbar-nav">
+  <ul class="navbar-nav ">
     <li class="nav-item">
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
-    <li class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+  </ul>
+  <div class="nav-item dropdown ml-auto">
+        <a id="navbarDropdown" class="nav-link dropdown-toggle btn btn-outline-secondary " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }} <span class="caret"></span>
         </a>
 
@@ -21,6 +22,5 @@
                 @csrf
             </form>
         </div>
-    </li>
-  </ul>
+    </div>
 </nav>

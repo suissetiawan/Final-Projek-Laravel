@@ -22,11 +22,11 @@
 	        		<input type="text" class="form-control" name="judul" id="judul">
 	      		</div>
 	      		<div class="form-group">
-	        		<label for="isi">Isi Pertanyaan <br>
+	        		<label>Isi Pertanyaan <br>
 	        			<small>Sertakan semua informasi yang dibuthkan untuk menjawab pertanyaan Anda.</small>
 	        		</label>
-	        		<textarea name="isi_pertanyaan" class="form-control my-editor">
-	        			{!! old('isi', $content ?? '') !!}
+	        		<textarea id="isi_pertanyaan" name="isi_pertanyaan" class="form-control my-editor">
+	        			{!! old('isi_pertanyaan',$content ?? '' ) !!}
 	        		</textarea>
 	      		</div>
 	      		<div class="form-group">
