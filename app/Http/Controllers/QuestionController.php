@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use App\Answer;
 use App\Tag;
 use App\User;
 use App\QuestionModel;
@@ -69,9 +70,9 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
-        Question::find($question);
-        return view('question.detail', compact('question'));
+        $answers = Answer::getAnswerById($question['id']);
+        $count = $answers->count();
+        return view('question.detail', compact('question', 'answers', 'count'));
     }
 
     /**

@@ -8,11 +8,9 @@
 @section('content')
 
 	<div class="card card-widget">
-         
-
         <div class="card-header">
             <div class="user-block">
-            <p class="h3">{{$question-> judul}}</p>
+            <p class="h3">{{$question->judul}}</p>
             </div>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" title="Edit">
@@ -41,7 +39,7 @@
             @endforeach
         </div>
 
-        <div class="card-footer card-comments">
+        {{-- <div class="card-footer card-comments">
             <div class="card-comment">
             	<img class="img-circle img-sm" src="{{asset('/adminlte/dist/img/user3-128x128.jpg')}}" alt="User Image">
               	<div class="comment-text">
@@ -62,7 +60,7 @@
                     hmm
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="card-footer">
             <form action="/answers" method="post">
@@ -83,45 +81,39 @@
     
     <div class="card">
         <div class="card-header">
-          <h3 class="card-title"><strong>2 Jawaban</strong></h3>
+          <h3 class="card-title"><strong>{{ $count }} Jawaban</strong></h3>
         </div>
 
         <div class="card-body">
+          @foreach($answers as $answer)
             <div class="post">
               <div class="user-block">
                 <img class="img-circle img-bordered-sm" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="user image">
                 <span class="username">
-                  <a href="#">Alam</a>
+                  <a href="#">{{ $answer->name }}</a>
                 </span>
-                <span class="description">Hari ini</span>
+                <span class="description">{{ $answer->created_at }}</span>
               </div>
               <!-- /.user-block -->
               <p>
-                LTS merupakan kepanjangan dari Long Term Support, artinya versi Laravel 5.5 akan sedikit berbeda dengan versi sebelumnya. Perbedaan itu sendiri yaitu, pada Laravel 5.5 akan lebih lama mendapat dukungan yang lebih lama. Versi LTS menerima perbaikan bug selama dua tahun, dan perbaikan keamanan selama tiga tahun. Sedangkan pada versi yang bukan LTS hanya menerima dukungan perbaikan bug selama 6 bulan, dan perbaikan keamanan selama satu tahun.
+                {!! old('isi_jawaban', $answer->isi_jawaban ?? '') !!}
               </p>
             </div>
+          @endforeach
 
             <div class="post">
-              <div class="user-block">
-                <img class="img-circle img-bordered-sm" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="User Image">
-                <span class="username">
-                  <a href="#">Annisa</a>
-                </span>
-                <span class="description">1 hari yang lalu</span>
-              </div>
-              <!-- /.user-block -->
-              <p>
-                Nah seperti itu 
-              </p>
-            </div>
-
-            <div class="post">
-                <h4>Jawaban Anda</h4>
+              <h4>Jawaban Anda</h4>
+              <form action="/answers" method="POST">
+                @csrf
+                <input type="hidden" name="questions_id" id="questions_id" value="{{ $question->id }}">
+                <input type="hidden" name="users_id" id="users_id" value="{{ Auth::user()->id }}">
                 <div class="form-group">
-                    <textarea name="isi" class="form-control my-editor">
-                        {!! old('isi', $content ?? '') !!}
+                    <textarea name="isi_jawaban" class="form-control my-editor">
+                        {!! old('isi_jawaban', $content ?? '') !!}
                     </textarea>
                 </div>
+                <button type="submit" class="btn btn-primary">Tambah Jawaban</button>
+              </form>
             </div>
 
         </div>

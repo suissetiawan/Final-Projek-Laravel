@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Answer;
+use App\Comment;
 use Illuminate\Http\Request;
 
-class AnswerController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,22 +35,16 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'questions_id' => 'required',
-            'isi_jawaban' => 'required',
-            'users_id' => 'required'
-        ]);
-        $result = Answer::create($request->all());
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Answer  $answer
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Answer $answer)
+    public function show(Comment $comment)
     {
         //
     }
@@ -58,10 +52,10 @@ class AnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Answer  $answer
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Answer $answer)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -70,10 +64,10 @@ class AnswerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Answer  $answer
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Answer $answer)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -81,10 +75,10 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Answer  $answer
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Answer $answer)
+    public function destroy(Comment $comment)
     {
         //
     }
