@@ -98,7 +98,11 @@ class QuestionController extends Controller
     {
         //
         $data = $request->all();
-        $data2 = Question::create([]);
+        $question->update([
+            "judul" => $request->judul,
+            "isi_pertanyaan" => $request->isi_pertanyaan,
+            "users_id" => $request->users_id
+        ]);
         $tagArr = explode(",", $request->tags);
         $tagMulti = [];
         foreach ($tagArr as $strtag) {
@@ -106,11 +110,12 @@ class QuestionController extends Controller
          $tagMulti[] = $tagAssc;
         } 
         foreach ($tagMulti as $tagCek) {
-            $tag = Tag::firstOrCreate($tagCek);
-            $data2->tags()->attach($tag->id);
+            $tag = Tag::updateOrCreate($tagCek);
+            $question->tags()->attach($tag->id);
         }
+        dd($question);
         unset($data['_token'], $data['_method'],$data['tags']);
-        QuestionModel::update($data);
+        // QuestionModel::update($data);
 
         return redirect('/questions');
     }
