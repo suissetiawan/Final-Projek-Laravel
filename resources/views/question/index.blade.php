@@ -36,8 +36,18 @@
 		    	</div>
 		    	<div class="card-footer">
 		    		<div class="float-left">
-		    			<span class="badge badge-success">0 Votes</span>
-		    			<span class="badge bg-indigo">0 Jawaban</span>
+	    			<span class="badge badge-warning p-2">0 Votes</span>
+	    			<span class="badge bg-indigo p-2">0 Jawaban</span>
+	    			<span>
+	    				<button class="btn btn-xs btn-info p-1">
+	    					<i class="fa fa-thumbs-up"></i> like
+	    				</button>
+	    			</span>
+	    			<span>
+	    				<button class="btn btn-xs btn-danger p-1">
+	    					<i class="fa fa-thumbs-down"></i> like
+	    				</button>
+	    			</span>
 		    		</div>
 		    		<div class="float-right">
 		    		<small>Diposting pada {{$ask->updated_at}} oleh {{ $ask->user->name }}</small>
