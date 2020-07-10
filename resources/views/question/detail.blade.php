@@ -11,24 +11,24 @@
         <div class="card-header">
             <div class="user-block">
             <p class="h3">
-                Apa yang dimaksud LTS dalam Laravel 6.x ?
+                {{$question-> judul}}
             </p>
             </div>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" title="Edit">
-                    <a href="/questions/1/edit"><i class="fas fa-edit"></i></a>
+                    <a href="/questions/{{$question->id}}/edit"><i class="fas fa-edit"></i></a>
                 </button>
             </div>
         </div>
 
         <div class="card-body">
           	<p>
-                Saya menggunakan laravel 6.x dan versi LTS, apa itu LTS? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam blanditiis voluptatibus quisquam iure facere beatae nulla sed inventore libero illo cumque recusandae quia, placeat fugiat molestias debitis aperiam, ipsa ipsam.
+                {{$question->isi_pertanyaan}}
           	</p>
             <span class="float-right text-muted">
                 <div class="callout callout-info">
                     <div class="row">
-                        <p><small>Pada 9 Juli 15:48</small></p>
+                        <p><small>Pada {{$question->updated_at}}</small></p>
                     </div>
                     <div class="row">
                         <img class="img-circle" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="User Image" width="20">

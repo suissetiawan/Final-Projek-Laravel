@@ -7,10 +7,10 @@
 			<div class="mb-3 pull-right">
 				<a href="/questions/create" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Buat pertanyaan</a>
 			</div>
-			@for($i = 1; $i <= 5; $i++)
+			@foreach($question as $key => $ask)
 			<div class="card card-widget card-outline card-primary">
 		    	<div class="card-body">
-		    		<a href="" class="h4">Apa yang dimaksud LTS dalam Laravel 6.x ?</a>
+		    		<a href="/questions/{{$ask->id}}" class="h4">{{$ask-> isi_pertanyaan}}</a>
 		    		<div class="float-right">
 				        <button type="button" class="btn btn-tool" title="Edit">
 				          	<a href="{{ route('questions.edit', 1) }}"><i class="fas fa-edit"></i></a>
@@ -30,11 +30,11 @@
 		    			<span class="badge bg-indigo">0 Jawaban</span>
 		    		</div>
 		    		<div class="float-right">
-		    			<small>Diposting pada 2020-07-09 10:27 oleh Reva Doni Aprilio</small>
+		    			<small>Diposting pada {{$ask->updated_at}} oleh Reva Doni Aprilio</small>
 		    		</div>
 		    	</div>
 		  	</div>
-			@endfor
+			@endforeach
 			
 		</div>
 		<div class="col-md-3">
