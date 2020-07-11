@@ -13,6 +13,7 @@
 		    		<div class="col-md-10">
 		    			<a href="/questions/{{$ask->id}}" class="h4">{!! old('isi', $ask->judul) !!}</a>
 		    		</div>
+		    		@if(Auth::user()->id == $ask->user->id)
 		    		<div class="col-md-2">
 			    		<div class="float-right">
 					        <button type="button" class="btn btn-tool" title="Edit">
@@ -26,8 +27,8 @@
 					          	</button>
 					        </form>
 					    </div>
-		    			
 		    		</div>
+		    		@endif
 		    	</div>
 		    	<div class="card-body">
 		    		@foreach($ask->tags as $val)
