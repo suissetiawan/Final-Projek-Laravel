@@ -61,7 +61,7 @@ class QuestionController extends Controller
 
         return redirect('/questions');
     }
-
+        
     /**
      * Display the specified resource.
      *
@@ -70,9 +70,13 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        $answers = Answer::getAnswerById($question['id']);
-        $count = $answers->count();
-        return view('question.detail', compact('question', 'answers', 'count'));
+        // $answers = Answer::getAnswerById($question['id']);
+        // $count = $answers->count();
+        // dd($count);
+        $ask = Question::find($question->id);
+        //dd($ask->answer->count());
+        return view('question.detail', compact('ask'));
+
     }
 
     /**
@@ -99,14 +103,16 @@ class QuestionController extends Controller
     {
         //
         $data = $request->all();
+        //dd($data, $data2);
         $question->update([
             "judul" => $request->judul,
             "isi_pertanyaan" => $request->isi_pertanyaan,
             "users_id" => $request->users_id
         ]);
+        $question->tags()->detach();
         $tagArr = explode(",", $request->tags);
         $tagMulti = [];
-        foreach ($tagArr as $strtag) {
+        foreach ($tagArr as $strtag){
          $tagAssc["tags"] = $strtag;
          $tagMulti[] = $tagAssc;
         } 
@@ -114,10 +120,8 @@ class QuestionController extends Controller
             $tag = Tag::updateOrCreate($tagCek);
             $question->tags()->attach($tag->id);
         }
-        dd($question);
+        // dd($question);
         unset($data['_token'], $data['_method'],$data['tags']);
-        // QuestionModel::update($data);
-
         return redirect('/questions');
     }
 

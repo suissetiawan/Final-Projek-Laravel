@@ -10,31 +10,31 @@
 	<div class="card card-widget">
         <div class="card-header">
             <div class="user-block">
-            <p class="h3">{{$question->judul}}</p>
+            <p class="h3">{{$ask->judul}}</p>
             </div>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" title="Edit">
-                    <a href="/questions/{{$question->id}}/edit"><i class="fas fa-edit"></i></a>
+                    <a href="/questions/{{$ask->id}}/edit"><i class="fas fa-edit"></i></a>
                 </button>
             </div>
         </div>
 
         <div class="card-body">
           	<p>
-                {!! old('isi', $question->isi_pertanyaan) !!}
+                {!! old('isi', $ask->isi_pertanyaan) !!}
           	</p>
             <span class="float-right text-muted">
                 <div class="callout callout-info">
                     <div class="row">
-                        <p><small>Pada {{$question->updated_at}}</small></p>
+                        <p><small>Pada {{$ask->updated_at}}</small></p>
                     </div>
                     <div class="row">
                         <img class="img-circle" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="User Image" width="20">
-                        <p><small>&nbsp;Reva Doni Aprilio</small></p>
+                        <p><small>&nbsp;{{$ask->user->name}}</small></p>
                     </div>
                 </div>
             </span>
-            @foreach($question->tags as $val)
+            @foreach($ask->tags as $val)
             <button class="btn btn-sm btn-success mr-1 mt-5">{{$val->tags}}</button>
             @endforeach
         </div>
@@ -81,16 +81,16 @@
     
     <div class="card">
         <div class="card-header">
-          <h3 class="card-title"><strong>{{ $count }} Jawaban</strong></h3>
+          <h3 class="card-title"><strong>{{$ask->answer->count()}} Jawaban</strong></h3>
         </div>
 
         <div class="card-body">
-          @foreach($answers as $answer)
+          @foreach($ask->answer as $answer)
             <div class="post">
               <div class="user-block">
                 <img class="img-circle img-bordered-sm" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="user image">
                 <span class="username">
-                  <a href="#">{{ $answer->name }}</a>
+                  <a href="#">{{$ask->user->name}}</a>
                 </span>
                 <span class="description">{{ $answer->created_at }}</span>
               </div>
@@ -105,7 +105,7 @@
               <h4>Jawaban Anda</h4>
               <form action="/answers" method="POST">
                 @csrf
-                <input type="hidden" name="questions_id" id="questions_id" value="{{ $question->id }}">
+                <input type="hidden" name="questions_id" id="questions_id" value="{{ $ask->id }}">
                 <input type="hidden" name="users_id" id="users_id" value="{{ Auth::user()->id }}">
                 <div class="form-group">
                     <textarea name="isi_jawaban" class="form-control my-editor">
@@ -113,6 +113,9 @@
                     </textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Tambah Jawaban</button>
+                <button type="button" class="btn btn-tool" title="Edit">
+                    <a href="/answer/{{$answer->id}}/edit"><i class="fas fa-edit"></i></a>
+                </button>
               </form>
             </div>
 
