@@ -26,11 +26,13 @@
             <span class="float-right text-muted">
                 <div class="callout callout-info">
                     <div class="row">
-                        <p><small>Pada {{$ask->updated_at}}</small></p>
+                        <p><small>Pada {{$ask->created_at}}</small></p>
                     </div>
                     <div class="row">
-                        <img class="img-circle" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="User Image" width="20">
-                        <p><small>&nbsp;{{$ask->user->name}}</small></p>
+                        <p><small>Diubah {{$ask->updated_at}}</small></p>
+                    </div>
+                    <div class="row">
+                        <p><small>{{$ask->user->name}}</small></p>
                     </div>
                 </div>
             </span>
@@ -85,18 +87,18 @@
         </div>
 
         <div class="card-body">
-          @foreach($ask->answer as $answer)
+          @foreach($ask->answer as $ask)
             <div class="post">
               <div class="user-block">
                 <img class="img-circle img-bordered-sm" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="user image">
                 <span class="username">
                   <a href="#">{{$ask->user->name}}</a>
                 </span>
-                <span class="description">{{ $answer->created_at }}</span>
+                <span class="description">{{ $ask->created_at }}</span>
               </div>
               <!-- /.user-block -->
               <p>
-                {!! old('isi_jawaban', $answer->isi_jawaban ?? '') !!}
+                {!! old('isi_jawaban', $ask->isi_jawaban ?? '') !!}
               </p>
             </div>
           @endforeach
@@ -114,7 +116,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Tambah Jawaban</button>
                 <button type="button" class="btn btn-tool" title="Edit">
-                    <a href="/answer/{{$answer->id}}/edit"><i class="fas fa-edit"></i></a>
+                    <a href="/answer/{{$ask->id}}/edit"><i class="fas fa-edit"></i></a>
                 </button>
               </form>
             </div>
