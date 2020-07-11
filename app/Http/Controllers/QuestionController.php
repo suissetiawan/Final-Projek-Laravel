@@ -19,6 +19,7 @@ class QuestionController extends Controller
     public function index()
     {
         $question = Question::all();
+        //dd($question->answer);
         return view('question.index',compact('question'));
     }
 
@@ -74,9 +75,8 @@ class QuestionController extends Controller
         // $count = $answers->count();
         // dd($count);
         $ask = Question::find($question->id);
-        //dd($ask->answer->count());
+        //dd($jawab->id);
         return view('question.detail', compact('ask'));
-
     }
 
     /**

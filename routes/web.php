@@ -21,6 +21,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('questions', 'QuestionController');
 	Route::resource('answers', 'AnswerController');
+	Route::post('/questionscomments','QuestioncommentController@store');
+	Route::post('/answerscomments','AnswercommentController@store');
 	Route::get('/detail', function() {
 		return view('question.detail');
 	});

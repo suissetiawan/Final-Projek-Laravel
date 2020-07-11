@@ -11,4 +11,8 @@ class Answer extends Model
         'isi_jawaban', 'questions_id', 'users_id',
     ];
     protected $guarded = [];
+
+    public function anscomment(){
+        return $this->hasMany('App\AnswerComment','answers_id');
+    }
 }
