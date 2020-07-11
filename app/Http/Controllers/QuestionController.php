@@ -70,9 +70,13 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        $answers = Answer::getAnswerById($question['id']);
-        $count = $answers->count();
-        return view('question.detail', compact('question', 'answers', 'count'));
+        // $answers = Answer::getAnswerById($question['id']);
+        // $count = $answers->count();
+        // dd($count);
+        $ask = Question::find($question->id);
+        //dd($ask->answer->count());
+        return view('question.detail', compact('ask'));
+
     }
 
     /**
