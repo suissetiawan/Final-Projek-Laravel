@@ -37,7 +37,9 @@
 		    	<div class="card-footer">
 		    		<div class="float-left">
 	    			<span class="badge badge-warning p-2">0 Votes</span>
-	    			<span class="badge bg-indigo p-2">{{$ask->answer->count()}} Jawaban</span>
+	    			<a href="/questions/{{$ask->id}}">
+	    				<span class="badge bg-indigo p-2">{{$ask->answer->count()}} Jawaban</span>
+	    			</a>
 	    			<span>
 	    				<button class="btn btn-xs btn-info p-1">
 	    					<i class="fa fa-thumbs-up"></i> like

@@ -8,7 +8,7 @@ class Answer extends Model
 {
     //
     protected $fillable = [
-        'isi_jawaban', 'question_id', 'users_id',
+        'isi_jawaban', 'questions_id', 'users_id',
     ];
     protected $guarded = [];
 }

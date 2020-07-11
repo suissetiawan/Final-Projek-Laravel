@@ -90,7 +90,7 @@
               <div class="user-block">
                 <img class="img-circle img-bordered-sm" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="user image">
                 <span class="username">
-                  <a href="#">{{ $answer->isi_jawaban }}</a>
+                  <a href="#">{{$ask->user->name}}</a>
                 </span>
                 <span class="description">{{ $answer->created_at }}</span>
               </div>

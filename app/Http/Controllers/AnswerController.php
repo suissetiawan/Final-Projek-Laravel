@@ -35,6 +35,7 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $request->validate([
             'questions_id' => 'required',
             'isi_jawaban' => 'required',
