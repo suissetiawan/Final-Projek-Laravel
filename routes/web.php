@@ -22,6 +22,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('questions', 'QuestionController');
 	Route::resource('answers', 'AnswerController');
 	Route::resource('comments', 'CommentController');
+
+	Route::post('/questionscomments','QuestioncommentController@store');
+	Route::post('/answerscomments','AnswercommentController@store');
+
 	Route::get('/detail', function() {
 		return view('question.detail');
 	});

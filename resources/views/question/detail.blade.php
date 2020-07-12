@@ -39,8 +39,18 @@
             @foreach($ask->tags as $val)
             <button class="btn btn-sm btn-success mr-1 mt-5">{{$val->tags}}</button>
             @endforeach
+            <div class="card-body box-profile">
+            <h6 class="mb-3"><b>comments({{$ask->askcomment->count()}})</b></h6>
+            <ul class="list-group list-group-unbordered mb-3">
+            @foreach($ask->askcomment as $comment)
+                  <li class="list-group-item">
+                    {!! old('isi_jawaban', $comment->isi_comments ?? '') !!}
+                    <a class="float-right">({{ $comment->created_at }})</a>
+                  </li>
+          @endforeach
+        </ul>
         </div>
-
+        </div>
         {{-- <div class="card-footer card-comments">
             <div class="card-comment">
             	<img class="img-circle img-sm" src="{{asset('/adminlte/dist/img/user3-128x128.jpg')}}" alt="User Image">
@@ -65,16 +75,18 @@
         </div> --}}
 
         <div class="card-footer">
-            <form action="/comments" method="post">
+            <form action="/questionscomments" method="post">
             	@csrf
-              <input type="hidden" name="pertanyaan_id" id="pertanyaan_id" value="1">
-            	<input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+              <input type="hidden" name="questions_id" value="{{$ask->id}}">
+            	<input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
               <img class="img-fluid img-circle img-sm" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="Alt Text">
               <!-- .img-push is used to add margin to elements next to floating images -->
               <div class="img-push row">
                 <div class="input-group">
                   <!-- /btn-group -->
-                  <input type="text" class="disabled form-control" name="isi_jawaban" id="isi_jawaban" placeholder="Tambahkan komentar">
+                  <input type="text" class="disabled form-control" name="isi_comments" placeholder="Tambahkan komentar untuk pertanyaan">
+                  <button type="submit" class="btn btn-info ml-2" style="border-radius:50%"><i class="fa fa-location-arrow"></i>
+                  </button>
                 </div>
               </div>
             </form>
@@ -100,6 +112,23 @@
               <p>
                 {!! old('isi_jawaban', $ask->isi_jawaban ?? '') !!}
               </p>
+            <div class="card-footer">
+            <form action="/answerscomments" method="post">
+              @csrf
+              <input type="hidden" name="answers_id" value="{{$answer->id}}">
+              <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
+              <!-- .img-push is used to add margin to elements next to floating images -->
+              <div class="img-push row">
+                <div class="input-group">
+                  <!-- /btn-group -->
+                  <img class="img-fluid img-circle img-sm" src="{{asset('/adminlte/dist/img/user1-128x128.jpg')}}" alt="Alt Text">
+                  <input type="text" class="disabled form-control" name="isi_comments" placeholder="Tambahkan komentar untuk jawaban">
+                  <button type="submit" class="btn btn-info ml-2" style="border-radius:50%"><i class="fa fa-location-arrow"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+        </div>
             </div>
           @endforeach
 

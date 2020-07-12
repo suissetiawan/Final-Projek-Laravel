@@ -14,11 +14,15 @@ class Question extends Model
     }
 
     public function answer() {
-    	return $this->hasMany('App\Answer','questions_id');
+    return $this->hasMany('App\Answer','questions_id');
     }
     
     public function user(){
-    	return $this->belongsTo('App\User', 'users_id');
+    	return $this->belongsTo('App\User','users_id');
+    }
+
+    public function askcomment(){
+        return $this->hasMany('App\QuestionComment','questions_id');
     }
 
     public function vote(){
