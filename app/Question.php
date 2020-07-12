@@ -21,4 +21,8 @@ class Question extends Model
     	return $this->belongsTo('App\User', 'users_id');
     }
 
+    public function vote(){
+        return $this->belongsTo('App\Vote');
+    }
+
 }

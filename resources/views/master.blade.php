@@ -59,6 +59,12 @@
 <script src="{{ asset('/adminlte/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('/adminlte/dist/js/demo.js')}}"></script>
+{{-- custom JS --}}
+<script src="{{ asset('js/vote.js') }}"></script>
+<script type="text/javascript">
+  var token = '{{ Session::token() }}';
+  var urlVote = '{{ Route('vote') }}';
+</script>
 
 @stack('scripts')
 

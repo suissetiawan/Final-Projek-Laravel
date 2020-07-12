@@ -6,8 +6,11 @@ use App\Question;
 use App\Answer;
 use App\Tag;
 use App\User;
+use App\Vote;
 use App\QuestionModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class QuestionController extends Controller
 {
@@ -18,7 +21,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $question = Question::all();
+        $question = Question::orderBy('created_at', 'desc')->get();
         return view('question.index',compact('question'));
     }
 
@@ -135,5 +138,35 @@ class QuestionController extends Controller
         QuestionModel::delete($id);
         return redirect('/questions');
     }
-    
+
+    public function questionVote(Request $request) {
+        $question_id = $request['questionId'];
+        $is_vote = $request['isVote'] === 'true';
+        $update = false;
+        $question = Question::find($question_id);
+        if (!$question) {
+            return null;
+        }
+        $user = Auth::user();
+        $vote = $user->vote()->where('questions_id', $question_id)->first();
+        if ($vote) {
+            $already_vote = $vote->vote;
+            $update = true;
+            if ($already_vote == $is_vote) {
+                $vote->delete();
+                return null;
+            }
+        } else {
+            $vote = new Vote();
+        }
+        $vote->vote = $is_vote;
+        $vote->users_id = $user->id;
+        $vote->questions_id = $question->id;
+        if ($update) {
+            $vote->update();
+        } else {
+            $vote->save();
+        }
+        return null;
+    }
 }

@@ -15,7 +15,7 @@ class CreateVoteTable extends Migration
     {
         Schema::create('vote', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->boolean('isi_vote');
+            $table->boolean('vote');
             $table->timestamps();
             $table->unsignedBigInteger('users_id')->nullable();
             $table->unsignedBigInteger('answers_id')->nullable();

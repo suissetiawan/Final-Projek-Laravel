@@ -28,4 +28,5 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/profile', function() {
 		return view('profile');
 	});
+	Route::post('/vote', 'QuestionController@questionVote')->name('vote');
 });

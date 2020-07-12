@@ -38,4 +38,12 @@ class User extends Authenticatable
     ];
 
     protected $guarded = [];
+
+    public function vote() {
+        return $this->hasMany('App\Vote', 'users_id');
+    }
+
+    public function question() {
+        return $this->hasMany('App\Question', 'questions_id');
+    }
 }

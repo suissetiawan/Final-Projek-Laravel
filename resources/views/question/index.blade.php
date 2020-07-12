@@ -41,15 +41,20 @@
 	    			<a href="/questions/{{$ask->id}}">
 	    				<span class="badge bg-indigo p-2">{{$ask->answer->count()}} Jawaban</span>
 	    			</a>
-	    			<span>
-	    				<button class="btn btn-xs btn-info p-1">
-	    					<i class="fa fa-thumbs-up"></i> like
+	    			<span class="question" data-questionid="{{ $ask->id }}">
+	    				{{-- <a href="#" class="btn btn-xs btn-info p-1 vote">Vote</a>
+	    				<a href="#" class="btn btn-xs btn-danger p-1 vote">Downvote</a> --}}
+
+	    				<a href="#" class="btn btn-xs btn-info p-1 vote">{{ Auth::user()->vote()->where('questions_id', $ask->id)->first() ? Auth::user()->vote()->where('questions_id', $ask->id)->first()->vote == 1 ? 'You vote this post' : 'Vote' : 'Vote'  }}</a>
+               			<a href="#" class="btn btn-xs btn-danger p-1 vote">{{ Auth::user()->vote()->where('questions_id', $ask->id)->first() ? Auth::user()->vote()->where('questions_id', $ask->id)->first()->vote == 0 ? 'You downvote like this post' : 'Downvote' : 'Downvote'  }}</a>
+
+
+	    				{{-- <button class="btn btn-xs btn-info p-1 vote">
+	    					<i class="fa fa-thumbs-up"></i> Vote
 	    				</button>
-	    			</span>
-	    			<span>
-	    				<button class="btn btn-xs btn-danger p-1">
-	    					<i class="fa fa-thumbs-down"></i> like
-	    				</button>
+	    				<button class="btn btn-xs btn-danger p-1 vote">
+	    					<i class="fa fa-thumbs-down"></i> Downvote
+	    				</button> --}}
 	    			</span>
 		    		</div>
 		    		<div class="float-right">
