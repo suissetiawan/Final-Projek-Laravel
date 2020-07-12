@@ -13,6 +13,10 @@ class Answer extends Model
     protected $guarded = [];
 
     public function anscomment(){
-        return $this->hasMany('App\AnswerComment','answers_id');
+        return $this->hasMany('App\AnswerComment', 'answers_id');
     }
+
+    public function user() {
+		return $this->belongsTo('App\User', 'users_id');
+	}
 }

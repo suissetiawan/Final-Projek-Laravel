@@ -11,4 +11,8 @@ class QuestionComment extends Model
     protected $fillable = [
         'isi_comments','questions_id', 'users_id',
     ];
+
+    public function user() {
+		return $this->belongsTo('App\User', 'users_id');
+	}
 }

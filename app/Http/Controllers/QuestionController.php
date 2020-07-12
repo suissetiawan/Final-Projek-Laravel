@@ -77,7 +77,7 @@ class QuestionController extends Controller
         // $count = $answers->count();
         // dd($count);
         $ask = Question::find($question->id);
-        //dd($jawab->id);
+        // dd($ask->user->name);
         return view('question.detail', compact('ask'));
     }
 
